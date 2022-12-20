@@ -9,13 +9,16 @@ public class Logic_script : MonoBehaviour
     protected int score;
     public Text scoretext;
     public GameObject GameOverScreen;
-
+    public AudioSource score_sound;
+    public AudioSource death_sound;
     public p_script player;
 
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<p_script>();
+        
+
 
     }
 
@@ -23,8 +26,10 @@ public class Logic_script : MonoBehaviour
     {
         if (player.alive)
         {
+            score_sound.Play();
             score += scorepoint;
             scoretext.text = score.ToString();
+
         }
 
 
@@ -37,6 +42,7 @@ public class Logic_script : MonoBehaviour
 
     public void GameOver()
     {
+        death_sound.Play();
         GameOverScreen.SetActive(true);
     }
 
